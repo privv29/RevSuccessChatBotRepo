@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rev Intern Marketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #fdfdfd;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .branding {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .logo {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .subtext {
+      font-size: 1rem;
+      color: #666;
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
+
+    .chatbot-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    iframe {
+      border: none;
+      width: 350px;
+      height: 520px;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 420px) {
+      iframe {
+        width: 90vw;
+        height: 70vh;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="branding">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntdKodA2l74tiBPozpSnUVsOadj-WgF8ygQ&s" alt="Rev Intern Logo" class="logo" />
+    <h1>Rev Intern</h1>
+    <div class="subtext">Marketing Team</div>
+    <div class="subtext">Please do not use more than one response per reel, as we have limited tokens.</div>
+
+  <div class="chatbot-container">
+    <iframe
+    src="https://www.chatbase.co/chatbot-iframe/GkIWxEdU73IJ_rGf10rjP"
+    width="100%"
+    style="height: 100%; min-height: 700px"
+    frameborder="0"
+></iframe>
+  </div>
+
+</body>
+</html>
