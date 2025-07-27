@@ -18,9 +18,30 @@
       color: #111;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
       position: relative;
+    }
+
+    .topbar {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topbar img {
+      height: 32px;
+      width: 32px;
+      border-radius: 8px;
+    }
+
+    .topbar span {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #222;
     }
 
     .card {
@@ -31,6 +52,7 @@
       max-width: 500px;
       width: 90%;
       text-align: center;
+      margin-top: 100px;
     }
 
     .logo {
@@ -43,7 +65,7 @@
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.4rem;
       margin: 0;
       font-weight: 600;
       color: #222;
@@ -65,6 +87,95 @@
       margin-top: 24px;
     }
 
+    .info-boxes {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .info-box {
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 16px;
+      padding: 20px;
+      width: 260px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .info-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #222;
+    }
+
+    .info-desc {
+      font-size: 0.92rem;
+      color: #444;
+      line-height: 1.4;
+    }
+
+    .manual {
+      background: white;
+      border-radius: 20px;
+      padding: 36px 28px;
+      max-width: 700px;
+      margin: 40px 20px 100px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+      display: none;
+    }
+
+    .manual h2 {
+      margin-top: 0;
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    .manual h3 {
+      margin-top: 24px;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .manual p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 12px;
+    }
+
+    .manual ul {
+      padding-left: 20px;
+    }
+
+    .manual li {
+      margin-bottom: 12px;
+      font-size: 0.94rem;
+      color: #444;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .copy-btn {
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      background: #007aff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .copy-btn:hover {
+      background: #005fce;
+    }
+
     .chatbot-container {
       position: fixed;
       bottom: 24px;
@@ -82,9 +193,33 @@
       border-radius: 12px;
     }
 
+    .toggle-manual {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      background: #444;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      z-index: 200;
+    }
+
+    .toggle-manual:hover {
+      background: #222;
+    }
+
     @media (max-width: 480px) {
       .card {
         padding: 32px 24px;
+        margin-top: 80px;
+      }
+
+      .info-boxes {
+        flex-direction: column;
+        align-items: center;
       }
 
       iframe {
@@ -92,15 +227,24 @@
         height: 70vh;
       }
 
-      .chatbot-container {
+      .chatbot-container, .toggle-manual {
         bottom: 16px;
-        right: 16px;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Branding Top Left -->
+  <div class="topbar">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntdKodA2l74tiBPozpSnUVsOadj-WgF8ygQ&s" alt="RevSuccess Logo" />
+    <span>RevisionSuccess</span>
+  </div>
+
+  <!-- Manual Toggle -->
+  <div class="toggle-manual" onclick="toggleManual()">❓ How to Use</div>
+
+  <!-- Main Card -->
   <div class="card">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntdKodA2l74tiBPozpSnUVsOadj-WgF8ygQ&s" alt="Rev Intern Logo" class="logo" />
     <h1>Rev Intern</h1>
@@ -108,6 +252,54 @@
     <div class="notice">⚠️ Please do not use more than one response per reel. We have limited tokens.</div>
   </div>
 
+  <!-- Info Boxes -->
+  <div class="info-boxes">
+    <div class="info-box">
+      <div class="info-title">🚀 Purpose</div>
+      <div class="info-desc">
+        This engine is trained on the highest-performing, algorithm-beating reels and leverages a curated database of proven content strategies.
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="info-title">🎯 Tailored for RevSuccess</div>
+      <div class="info-desc">
+        Built specifically for RevisionSuccess — optimized for team workflows, internal speed, and high-conversion education marketing.
+      </div>
+    </div>
+  </div>
+
+  <!-- Manual Section -->
+  <div class="manual" id="manual">
+    <h2>📘 How to Use This Engine</h2>
+    <p>This engine is trained on top-performing reel data, trend psychology, and proven content strategies. It doesn’t just help — it builds entire marketing outputs from scratch.</p>
+
+    <h3>✅ What It Can Do</h3>
+    <ul>
+      <li><span>🎯 Idea to Execution:</span> Generate full reel blueprints from a theme or prompt</li>
+      <li><span>💬 Hook & CTA Engineering:</span> Scroll-stopping hooks and high-conversion call-to-actions</li>
+      <li><span>📚 Scriptwriting & Captions:</span> Clean captions, monologues, and voiceovers</li>
+      <li><span>⚡ Scene Structuring & Cadence:</span> Clip pacing, transitions, and edit timing</li>
+      <li><span>📸 Personalization:</span> Adapts to tone, audience, and your vibe</li>
+    </ul>
+
+    <h3>🧠 Prompt Examples</h3>
+    <ul>
+      <li><span>“Give me 3 viral hooks for a reel on study motivation in July”</span> <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></li>
+      <li><span>“Write a full plan for a 30-second reel on memory hacks — from idea to scene breakdown and caption”</span> <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></li>
+      <li><span>“Make a CTA that’s subtle but emotional, aimed at Thai high schoolers”</span> <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></li>
+      <li><span>“Turn this reel script into a voiceover-ready version with better pacing”</span> <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></li>
+      <li><span>“Suggest 5 ways to structure a reel around this: ‘Why you fail exams and don’t even realize it’”</span> <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></li>
+    </ul>
+
+    <h3>🔑 Pro Tips</h3>
+    <ul>
+      <li>Be specific — more details = better results</li>
+      <li>Stack requests in one message (caption + scene list + CTA)</li>
+      <li>Use it not just for ideas, but full execution</li>
+    </ul>
+  </div>
+
+  <!-- Chatbot -->
   <div class="chatbot-container">
     <iframe
       src="https://www.chatbase.co/chatbot-iframe/GkIWxEdU73IJ_rGf10rjP"
@@ -116,6 +308,20 @@
       frameborder="0"
     ></iframe>
   </div>
+
+  <script>
+    function toggleManual() {
+      const manual = document.getElementById('manual');
+      manual.style.display = manual.style.display === 'none' || manual.style.display === '' ? 'block' : 'none';
+    }
+
+    function copyPrompt(btn) {
+      const text = btn.parentElement.querySelector('span').innerText;
+      navigator.clipboard.writeText(text);
+      btn.innerText = "Copied!";
+      setTimeout(() => (btn.innerText = "Copy"), 1500);
+    }
+  </script>
 
 </body>
 </html>
